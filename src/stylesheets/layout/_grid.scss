@@ -1,0 +1,186 @@
+.container {
+  max-width: 1140px;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.item-start {
+  align-items: start;
+}
+
+.item-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-end {
+  text-align: end;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-hidden {
+  display: none;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.d-table {
+  display: table;
+}
+
+.d-table-row {
+  display: table-row;
+}
+
+.d-table-cell {
+  display: table-cell;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(0px - $p-col);
+}
+
+.col {
+  padding: 0 $p-col;
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    width: percentage(calc($i / 12));
+  }
+}
+
+@media screen and (max-width: map-get($breakpoints, xl)) {
+  .container {
+    max-width: 960px;
+  }
+  .row {
+    margin: calc(0px - $p-col-lg);
+  }
+
+  .col {
+    padding: 0 $p-col-lg;
+  }
+
+  @for $i from 1 through 12 {
+    .col-xl-#{$i} {
+      width: percentage(calc($i / 12));
+    }
+  }
+}
+
+@media screen and (max-width: map-get($breakpoints, lg)) {
+  .container {
+    max-width: 960px;
+  }
+  .row {
+    margin: calc(0px - $p-col-lg);
+  }
+
+  .col {
+    padding: 0 $p-col-lg;
+  }
+
+  @for $i from 1 through 12 {
+    .col-lg-#{$i} {
+      width: percentage(calc($i / 12));
+    }
+  }
+}
+
+@media screen and (max-width: map-get($breakpoints, md)) {
+  .container {
+    max-width: 540px;
+  }
+  .row {
+    margin: calc(0px - $p-col-sm);
+  }
+
+  .col {
+    padding: 0 $p-col-sm;
+  }
+
+  @for $i from 1 through 12 {
+    .col-md-#{$i} {
+      width: percentage(calc($i / 12));
+    }
+  }
+}
+
+@media screen and (max-width: map-get($breakpoints, sm)) {
+  .container {
+    max-width: 100%;
+  }
+  .row {
+    margin: calc(0px - $p-col-sm);
+  }
+
+  .col {
+    padding: 0 $p-col-sm;
+  }
+
+  @for $i from 1 through 12 {
+    .col-sm-#{$i} {
+      width: percentage(calc($i / 12));
+    }
+  }
+}

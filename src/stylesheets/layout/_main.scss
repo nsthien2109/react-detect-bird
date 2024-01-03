@@ -1,0 +1,16 @@
+.main {
+  margin-top: $header-height;
+}
+
+@media screen and (max-width: map-get($breakpoints, md)) {
+  .main {
+    .main-body {
+      gap: 0;
+      flex-direction: column;
+      .main-content,
+      .main-aside {
+        width: 100%;
+      }
+    }
+  }
+}

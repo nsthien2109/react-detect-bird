@@ -1,0 +1,16 @@
+@mixin position($top, $right, $bottom, $left, $position) {
+  top: $top;
+  bottom: $bottom;
+  left: $left;
+  right: $right;
+  position: $position;
+}
+
+@mixin truncate-text($line) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  line-clamp: $line;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

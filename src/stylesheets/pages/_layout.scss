@@ -1,0 +1,14 @@
+.layout {
+  .ant-menu-root {
+    border: 0 !important;
+  }
+
+  .ant-menu-item-selected {
+    color: map-get($map: $color, $key: primary);
+    background-color: map-get($map: $color, $key: secondary);
+  }
+
+  .settings-dropdown {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  }
+}

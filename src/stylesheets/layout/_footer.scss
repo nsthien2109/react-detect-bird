@@ -1,0 +1,70 @@
+.footer {
+  padding-top: 20px;
+  border-top: 1px solid map-get($map: $color, $key: borderColor);
+  background-color: map-get($color, backgroundFrame);
+  &-content {
+    padding: 10px 0 30px;
+  }
+  &-logo {
+    width: 133px;
+  }
+  &-subtext {
+    max-width: 700px;
+    color: map-get($color, subtext);
+    font-size: map-get($font-size, xs);
+    font-weight: map-get($font-weight, medium);
+  }
+  &-copyright {
+    border-top: 1px solid map-get($color, borderColor);
+    padding: 6px 0;
+    .copyright {
+      color: map-get($color, text);
+      font-size: map-get($font-size, sm);
+    }
+  }
+
+  &-info {
+    font-size: map-get($font-size, xs);
+    &-title {
+      margin-bottom: 6px;
+    }
+    &-item,
+    .footer-link {
+      margin: 2px 0;
+      color: map-get($color, subtext);
+      transition: all ease 0.3s;
+      cursor: pointer;
+      &:hover {
+        color: map-get($map: $color, $key: text);
+      }
+    }
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: map-get($breakpoints, md)) {
+  .footer {
+    &-content {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 40px 0;
+    }
+    &-logo {
+      margin: 0 auto;
+    }
+    &-subtext {
+      text-align: center;
+    }
+    &-copyright {
+      flex-direction: column;
+      padding: 6px 0;
+      .copyright {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}

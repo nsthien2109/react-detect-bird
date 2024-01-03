@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "antd/dist/reset.css";
+
+@import "base/all";
+@import "layout/all";
+@import "modules/all";
+@import "pages/all";
+@import "states/all";
+
+svg {
+  vertical-align: initial;
+}

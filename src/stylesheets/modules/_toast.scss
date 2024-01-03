@@ -1,0 +1,83 @@
+.toast {
+  position: fixed;
+  top: calc($header-height + 8px);
+  left: 50%;
+
+  display: none;
+  min-width: 360px;
+  margin-left: -180px;
+  z-index: 9;
+
+  &-wrapper {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 12px;
+
+    .toast-icon {
+      margin-right: 16px;
+    }
+    .btn-toast-close {
+      padding: 0;
+      background-color: transparent;
+    }
+    .icon-toast {
+      width: 24px;
+      height: 24px;
+    }
+    .icon-toast-close {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  &-title {
+    color: map-get($color, text);
+    font-size: 16px;
+    font-weight: map-get($font-weight, semibold);
+    text-transform: capitalize;
+  }
+  &-subtext {
+    color: map-get($color, subtext);
+    font-size: 14px;
+  }
+}
+
+.toast.success {
+  .toast-wrapper {
+    border: 1px solid #48c1b5;
+    background-color: #f6fff9;
+  }
+}
+
+.toast.error {
+  .toast-wrapper {
+    border: 1px solid #f4b0a1;
+    background-color: #fff5f3;
+  }
+}
+
+.toast.show {
+  display: block;
+  animation: fadein 0.5s, fadeout 0.5s 3.6s;
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: calc($header-height + 8px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: calc($header-height + 8px);
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}

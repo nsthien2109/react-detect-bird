@@ -1,0 +1,55 @@
+$color: (
+  primary: #00a76f,
+  secondary: #edf8f4,
+  danger: #ef4a4a,
+  text: #1f2937,
+  subtext: #6b7280,
+  light-black: #374151,
+  textLight: #fff,
+  textHeading: #111827,
+  textButton: #fff,
+  defaultBg: #f5f5f5,
+  borderColor: #f3f4f6,
+  backgroundFrame: #fff,
+  loader-background-color: #eeeeee,
+  loader-highlight-color: #dedede,
+);
+
+$font-family-base: "Montserrat", sans-serif;
+$line-height-txt: 1.5;
+
+$header-height: 73px;
+
+$font-size: (
+  xxs: 10px,
+  xs: 12px,
+  sm: 14px,
+  md: 16px,
+  lg: 18px,
+  xl: 20px,
+  xxl: 24px,
+);
+
+$font-weight: (
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+);
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+$opacity-base: 0.5;
+
+$p-col: 10px;
+$p-col-lg: 10px;
+$p-col-sm: 4px;
+
+$icon-size: 40px;
+$icon-size-sm: 20px;
