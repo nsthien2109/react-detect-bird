@@ -1,5 +1,9 @@
-.bird{
-  .ant-pagination-options{
+.bird {
+  .ant-pagination-options {
     display: none;
   }
+}
+
+.ant-image-preview-img {
+  max-width: 400px !important;
 }

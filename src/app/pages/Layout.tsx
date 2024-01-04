@@ -12,13 +12,14 @@ import { Layout, Menu, Button, theme, Divider } from 'antd';
 import logo from '../../assets/svgs/logo.svg';
 import userAccount from '../../assets/svgs/user-account.svg';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import { logoutAction } from './auth/auth.actions';
 
 const { Header, Sider, Content } = Layout;
 
 const LayoutApp = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [openDropdown, setOpenDropdown] = useState(false);
 
   const auth = useSelector((state: RootState) => state.auth.userInfo);
@@ -38,6 +39,8 @@ const LayoutApp = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!auth.id) navigate('/auth/login');
@@ -120,7 +123,14 @@ const LayoutApp = () => {
                         </div>
                       </li>
                       <Divider className="my-2" />
-                      <li className="font-bold text-red-500 setting-item">Logout</li>
+                      <li
+                        onClick={() => {
+                          dispatch(logoutAction() as any);
+                        }}
+                        className="font-bold text-red-500 setting-item"
+                      >
+                        Logout
+                      </li>
                     </ul>
                   </div>
                 </div>

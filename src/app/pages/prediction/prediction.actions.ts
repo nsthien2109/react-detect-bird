@@ -5,6 +5,7 @@ import { RootAction } from '../../store/store';
 import { prediction } from '../../shared/services/prediction.services';
 import { History } from '../../models/history';
 import { getHistory, deleteHistory } from '../../shared/services/history.services';
+import { message } from 'antd';
 
 const predictionBird = () => {
   return {
@@ -81,19 +82,39 @@ export const deleteHistoryAction = (id: number) => async (dispatch: Dispatch<Roo
   try {
     await deleteHistory(id);
     dispatch(deleteHistorySuccess(id));
+    message.open({
+      type: 'info',
+      content: `Deleted !`,
+    });
   } catch (error) {
     dispatch(deleteHistoryFailure(`${error}`));
+    message.open({
+      type: 'warning',
+      content: `Somethings went wrong !`,
+    });
   }
 };
 
 export const predictionBirdAction = (input: File) => async (dispatch: Dispatch<RootAction>) => {
   dispatch(predictionBird());
+  message.open({
+    type: 'loading',
+    content: ` Predicting ... !`,
+  });
   const formData = new FormData();
   formData.append('file', input);
   try {
     const data = await prediction(formData);
     dispatch(predictionBirdSuccess(data as Prediction[]));
+    message.open({
+      type: 'success',
+      content: `Predicted !`,
+    });
   } catch (error) {
     dispatch(predictionBirdFailure(`${error}`));
+    message.open({
+      type: 'warning',
+      content: `Somethings went wrong !`,
+    });
   }
 };

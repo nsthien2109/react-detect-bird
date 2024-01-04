@@ -12,6 +12,9 @@ import { predictionBirdAction } from '../prediction.actions';
 import HistoryModal from '../components/HistoryModal';
 import { Prediction as PredictionModel } from '../../../models/prediction';
 
+import Lottie from 'lottie-react';
+import birdfoundAnimation from '../../../../assets/anims/bird-found.json';
+
 const Prediction = () => {
   const [photoPreview, setPhotoPreview] = useState<string>();
   const [openHistoryModal, setOpenHistoryModal] = useState(false);
@@ -66,7 +69,7 @@ const Prediction = () => {
             <h3 className="mt-3 mb-1 font-medium">Preview Image Input</h3>
             {photoPreview && <PreviewInputImage photoPreview={photoPreview} />}
           </div>
-          {predictions.length > 0 && !isLoading && (
+          {predictions.length > 0 && predictions[0].confidence > 45 && !isLoading && (
             <div className="flex-1 prediction-output">
               <h3 className="mt-3 mb-1 font-medium">Output Birds</h3>
               <OutputList predictions={predictions} onClick={handleResultSelected} />
@@ -74,6 +77,17 @@ const Prediction = () => {
               <BestPrediction bird={resultSelected ?? predictions[0]} />
             </div>
           )}
+
+          {predictions.length === 0 && !isLoading && (
+            <div className="flex-1 prediction-output">
+              <h3 className="mt-3 mb-1 font-medium">Output Birds</h3>
+              <div className="flex flex-col items-center ">
+                <Lottie style={{ width: '200px', height: '200px' }} animationData={birdfoundAnimation} loop={true} />
+                <p>Sorry, We couldn't detect this bird !, please try again</p>
+              </div>
+            </div>
+          )}
+
           {isLoading && <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />}
         </div>
         <HistoryModal

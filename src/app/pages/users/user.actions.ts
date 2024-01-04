@@ -138,22 +138,20 @@ export const createUserAction = (input: CreateUserData) => async (dispatch: Disp
   dispatch(createUserStart());
   try {
     const data: any = await createUser(input);
-    if (data.data.id) {
-      const role: Role = {
-        id: data.data.role,
-        name: data.data.role === 1 ? 'Admin' : 'User',
-      };
-      const newUser: User = {
-        histories: [],
-        createdAt: data.data.createdAt,
-        email: data.data.email,
-        isActive: data.data.isActive,
-        role: role,
-        username: data.data.username,
-        id: data.data.id,
-      };
-      dispatch(createUserSuccess(newUser));
-    }
+    const role: Role = {
+      id: data.data.role,
+      name: data.data.role === 1 ? 'Admin' : 'User',
+    };
+    const newUser: User = {
+      histories: [],
+      createdAt: data.data.createdAt,
+      email: data.data.email,
+      isActive: data.data.isActive,
+      role: role,
+      username: data.data.username,
+      id: data.data.id,
+    };
+    dispatch(createUserSuccess(newUser));
   } catch (error) {
     dispatch(createUserFailure(`${error}`));
     message.open({
