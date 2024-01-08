@@ -1,27 +1,26 @@
-import {Card, Divider, Spin} from 'antd';
+import { Card, Divider, Spin } from 'antd';
 import BirdCarousel from '../components/BirdCarousel';
 import { ApartmentOutlined, InfoCircleFilled } from '@ant-design/icons';
-import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {getBirdAction} from "../bird.actions";
-import {useParams} from "react-router-dom";
-import {Bird} from "../../../models/bird";
-import {RootState} from "../../../store/store";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBirdAction } from '../bird.actions';
+import { useParams } from 'react-router-dom';
+import { Bird } from '../../../models/bird';
+import { RootState } from '../../../store/store';
 
 const BirdDetail = () => {
-
   const dispatch = useDispatch();
 
   const { id } = useParams();
 
-  const {birdDetail, isLoading}  = useSelector((state : RootState) => state.birds);
+  const { birdDetail, isLoading } = useSelector((state: RootState) => state.birds);
 
   useEffect(() => {
-    dispatch(getBirdAction(parseInt(id!)) as any)
+    dispatch(getBirdAction(parseInt(id!)) as any);
   }, [id]);
 
-  if(isLoading){
-    return <Spin/>
+  if (isLoading) {
+    return <Spin />;
   }
 
   return (
@@ -41,12 +40,10 @@ const BirdDetail = () => {
             </p>
             <p className="my-5 text-base font-semibold bird-status">
               <InfoCircleFilled className="mr-3 text-xl text-blue-500" />
-              {birdDetail.conservation_status}
+              {birdDetail.status?.statusName}
             </p>
             <Divider />
-            <p className="text-gray-500 bird-desc">
-              {birdDetail.description}
-            </p>
+            <p className="text-gray-500 bird-desc">{birdDetail.description}</p>
           </div>
         </div>
         <Card className="mt-5">
@@ -58,13 +55,11 @@ const BirdDetail = () => {
               </li>
               <li className="my-3 bird-info-item">
                 <h5 className="text-xl font-bold bird-info-title">Bird Family</h5>
-                <p className="bird-info-subtitle">{birdDetail.family}</p>
+                <p className="bird-info-subtitle">{birdDetail.family?.familyName}</p>
               </li>
               <li className="my-3 bird-info-item">
                 <h5 className="text-xl font-bold bird-info-title">Distribution</h5>
-                <p className="bird-info-subtitle">
-                  {birdDetail.distribution}
-                </p>
+                <p className="bird-info-subtitle">{birdDetail.distribution}</p>
               </li>
               <li className="my-3 bird-info-item">
                 <h5 className="text-xl font-bold bird-info-title">Diet</h5>
