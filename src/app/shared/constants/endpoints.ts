@@ -7,6 +7,9 @@ const RESOURCES = {
   birds: 'birds',
   prediction: 'prediction',
   histories: 'histories',
+  status: 'status',
+  families: 'family',
+  order: 'orders',
 };
 
 export const ENDPOINT = {
@@ -17,6 +20,15 @@ export const ENDPOINT = {
     login: `${BASE_URL}/${RESOURCES.auth}/login`,
     register: `${BASE_URL}/${RESOURCES.auth}/register`,
     logout: `${BASE_URL}/${RESOURCES.auth}/logout`,
+  },
+  status: {
+    index: `${BASE_URL}/${RESOURCES.status}`,
+  },
+  families: {
+    index: `${BASE_URL}/${RESOURCES.families}`,
+  },
+  order: {
+    index: `${BASE_URL}/${RESOURCES.order}`,
   },
   birds: {
     index: `${BASE_URL}/${RESOURCES.birds}`,

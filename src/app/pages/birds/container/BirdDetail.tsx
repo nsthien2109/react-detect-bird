@@ -36,11 +36,11 @@ const BirdDetail = () => {
             <p className="my-5 text-base font-semibold bird-order">
               {' '}
               <ApartmentOutlined className="mr-3 text-xl text-green-500" />
-              {birdDetail.bird_order}
+              {birdDetail.order?.orderName} - {birdDetail.order?.orderVietnameseName}
             </p>
             <p className="my-5 text-base font-semibold bird-status">
               <InfoCircleFilled className="mr-3 text-xl text-blue-500" />
-              {birdDetail.status?.statusName}
+              {birdDetail.status?.statusName} - {birdDetail.status?.statusVietnameseName}
             </p>
             <Divider />
             <p className="text-gray-500 bird-desc">{birdDetail.description}</p>
@@ -55,7 +55,9 @@ const BirdDetail = () => {
               </li>
               <li className="my-3 bird-info-item">
                 <h5 className="text-xl font-bold bird-info-title">Bird Family</h5>
-                <p className="bird-info-subtitle">{birdDetail.family?.familyName}</p>
+                <p className="bird-info-subtitle">
+                  {birdDetail.family?.familyName} - {birdDetail.family?.familyVietnameseName}
+                </p>
               </li>
               <li className="my-3 bird-info-item">
                 <h5 className="text-xl font-bold bird-info-title">Distribution</h5>

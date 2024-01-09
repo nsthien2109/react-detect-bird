@@ -6,6 +6,9 @@ import {
   CaretRightOutlined,
   CaretLeftOutlined,
   ScanOutlined,
+  ApartmentOutlined,
+  AppstoreOutlined,
+  BulbOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Divider } from 'antd';
 
@@ -48,7 +51,14 @@ const LayoutApp = () => {
 
   return (
     <Layout className="min-h-screen layout" onClick={() => setOpenDropdown(false)}>
-      <Sider trigger={null} collapsible collapsed={collapsed} theme="light" width={279} className="px-4">
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        theme="light"
+        width={279}
+        className="px-4 fixed left-0 top-0"
+      >
         <img src={logo} alt="Njha detection" className="w-[90px]" />
         {!collapsed && <h4 className="mt-5 mb-1 uppercase label">Overview</h4>}
         <Menu
@@ -67,6 +77,21 @@ const LayoutApp = () => {
               key: '/user',
               icon: <UserOutlined />,
               label: <Link to={'/users'}>Users</Link>,
+            },
+            {
+              key: '/families',
+              icon: <ApartmentOutlined />,
+              label: <Link to={'/families'}>Families</Link>,
+            },
+            {
+              key: '/orders',
+              icon: <AppstoreOutlined />,
+              label: <Link to={'/orders'}>Orders</Link>,
+            },
+            {
+              key: '/status',
+              icon: <BulbOutlined />,
+              label: <Link to={'/status'}>Status</Link>,
             },
             {
               key: '/birds',

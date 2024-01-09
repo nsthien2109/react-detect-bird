@@ -59,4 +59,17 @@ export const ACTION_TYPES = {
   DELETE_HISTORY: 'deleteHistory',
   DELETE_HISTORY_SUCCESS: 'deleteHistorySuccess',
   DELETE_HISTORY_FAILURE: 'deleteHistoryFailure',
+
+  // After update
+  GET_ALL_STATUS: 'getAllStatus',
+  GET_ALL_STATUS_SUCCESS: 'getAllStatusSuccess',
+  GET_ALL_STATUS_FAILURE: 'getAllStatusFailure',
+
+  GET_ALL_FAMILY: 'getAllFamily',
+  GET_ALL_FAMILY_SUCCESS: 'getAllFamilySuccess',
+  GET_ALL_FAMILY_FAILURE: 'getAllFamilyFailure',
+
+  GET_ALL_ORDER: 'getAllOrder',
+  GET_ALL_ORDER_SUCCESS: 'getAllOrderSuccess',
+  GET_ALL_ORDER_FAILURE: 'getAllOrderFailure',
 };
