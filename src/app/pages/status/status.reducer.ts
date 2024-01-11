@@ -38,6 +38,31 @@ export const statusReducer = (state = initState, action: RootAction): BirdStatus
         message: action.payload,
       };
 
+    case ACTION_TYPES.GET_STATUS:
+      return {
+        ...state,
+        isLoading: true,
+        isSuccess: false,
+        isError: false,
+      };
+
+    case ACTION_TYPES.GET_STATUS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: true,
+        statusDetail: action.payload,
+      };
+
+    case ACTION_TYPES.GET_STATUS_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: false,
+        isError: true,
+        message: action.payload,
+      };
+
     default:
       return state;
   }

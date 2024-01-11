@@ -38,6 +38,31 @@ export const familyReducer = (state = initState, action: RootAction): BirdFamily
         message: action.payload,
       };
 
+    case ACTION_TYPES.GET_FAMILY:
+      return {
+        ...state,
+        isLoading: true,
+        isSuccess: false,
+        isError: false,
+      };
+
+    case ACTION_TYPES.GET_FAMILY_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: true,
+        familyDetail: action.payload,
+      };
+
+    case ACTION_TYPES.GET_FAMILY_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: false,
+        isError: true,
+        message: action.payload,
+      };
+
     default:
       return state;
   }

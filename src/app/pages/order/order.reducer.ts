@@ -38,6 +38,31 @@ export const orderReducer = (state = initState, action: RootAction): BirdOrderSt
         message: action.payload,
       };
 
+    case ACTION_TYPES.GET_ORDER:
+      return {
+        ...state,
+        isLoading: true,
+        isSuccess: false,
+        isError: false,
+      };
+
+    case ACTION_TYPES.GET_ORDER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: true,
+        orderDetail: action.payload,
+      };
+
+    case ACTION_TYPES.GET_ORDER_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: false,
+        isError: true,
+        message: action.payload,
+      };
+
     default:
       return state;
   }

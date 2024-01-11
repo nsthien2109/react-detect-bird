@@ -1,44 +1,43 @@
-import { SearchOutlined } from '@ant-design/icons';
-import React, { useRef, useState, useEffect } from 'react';
-import Highlighter from 'react-highlight-words';
-import type { InputRef } from 'antd';
-import { Breadcrumb, Button, Input, Space, Spin, Table } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, Input, InputRef, Modal, Space, Table, Image, Spin } from 'antd';
 import type { ColumnType, ColumnsType } from 'antd/es/table';
-import type { FilterConfirmProps } from 'antd/es/table/interface';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-import { getAllFamilyAction, getFamilyAction } from '../family.actions';
-import BirdModel from '../../../shared/components/BirdModel';
-import { Link } from 'react-router-dom';
+import { SearchOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
 
-interface BirdFamilyType {
-  key: number;
-  familyName: string;
-  familyVietnameseName: string;
+import { useDispatch, useSelector } from 'react-redux';
+import { Bird } from '../../models/bird';
+import { FilterConfirmProps } from 'antd/es/table/interface';
+import { useNavigate } from 'react-router-dom';
+
+interface BirdModalProps {
+  data: Bird[];
+  open: boolean;
+  isLoading: boolean;
+  onCancel: () => void;
 }
 
-type DataIndex = keyof BirdFamilyType;
+interface DataType {
+  key: number;
+  common_name: string;
+  vietnamese_name: string;
+  scientific_name: string;
+  description: string;
+  images: string[];
+  onDelete: () => void;
+  onEdit: () => void;
+}
 
-const FamilyList: React.FC = () => {
+type DataIndex = keyof DataType;
+
+const BirdModel: React.FC<BirdModalProps> = ({ open, onCancel, data, isLoading }) => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
-  const [isOpenBirdModel, setIsOpenBirdModel] = useState(false);
 
   const dispatch = useDispatch();
-  const { families, familyDetail, isLoading } = useSelector((state: RootState) => state.family);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(getAllFamilyAction() as any);
-  }, []);
-
-  const familiesData: BirdFamilyType[] = families?.map((item) => {
-    return {
-      key: item.id,
-      familyName: item.familyName,
-      familyVietnameseName: item.familyVietnameseName || 'Not Update',
-    };
-  });
+  useEffect(() => {}, []);
 
   const handleSearch = (
     selectedKeys: string[],
@@ -55,7 +54,7 @@ const FamilyList: React.FC = () => {
     setSearchText('');
   };
 
-  const getColumnSearchProps = (dataIndex: DataIndex): ColumnType<BirdFamilyType> => ({
+  const getColumnSearchProps = (dataIndex: DataIndex): ColumnType<DataType> => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
@@ -127,72 +126,72 @@ const FamilyList: React.FC = () => {
       ),
   });
 
-  const columns: ColumnsType<BirdFamilyType> = [
+  const columns: ColumnsType<DataType> = [
     {
       title: 'Id',
       dataIndex: 'key',
       key: 'key',
-      width: '20%',
+      width: '10%',
       ...getColumnSearchProps('key'),
     },
     {
-      title: 'Family name',
-      dataIndex: 'familyName',
-      key: 'familyName',
+      title: 'Common Name',
+      dataIndex: 'common_name',
+      key: 'common_name',
       width: '30%',
-      ...getColumnSearchProps('familyName'),
+      ...getColumnSearchProps('common_name'),
     },
     {
       title: 'Vietnamese name',
-      dataIndex: 'familyVietnameseName',
-      key: 'familyVietnameseName',
-      ...getColumnSearchProps('familyVietnameseName'),
+      dataIndex: 'vietnamese_name',
+      key: 'vietnamese_name',
+      ...getColumnSearchProps('vietnamese_name'),
     },
     {
       title: 'Action',
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <Button
-            onClick={async () => {
-              await dispatch(getFamilyAction(record.key) as any);
-              setIsOpenBirdModel(true);
-            }}
-            className="bg-blue-300"
-          >
-            View Detail
+          <Button onClick={() => navigate(`/birds/${record.key}`)} className="bg-blue-300">
+            View
           </Button>
         </Space>
       ),
     },
   ];
 
+  const renderData: DataType[] =
+    data &&
+    data.map((item) => {
+      return {
+        key: item.id,
+        common_name: item.common_name || 'Unknow',
+        vietnamese_name: item.vietnamese_name || 'Unknow',
+        scientific_name: item.scientific_name || 'Unknow',
+        description: item.description || 'Unknow',
+        images: item.images || [],
+        onDelete: () => {},
+        onEdit: () => {},
+      };
+    });
+
   return (
-    <>
-      <Breadcrumb
-        className="mb-7"
-        items={[
-          {
-            title: <Link to="/">Dashboard</Link>,
-          },
-          {
-            title: 'Families',
-          },
-        ]}
-      />
+    <Modal
+      width={'70%'}
+      open={open}
+      title="History"
+      onCancel={onCancel}
+      footer={[
+        <Button key="cancel-form" type="primary" className="bg-red-500" onClick={onCancel}>
+          Cancel
+        </Button>,
+      ]}
+    >
       <Spin spinning={isLoading}>
-        <Table columns={columns} dataSource={familiesData} />{' '}
+        <Table columns={columns} dataSource={renderData} />
       </Spin>
-      <BirdModel
-        data={[...(familyDetail.birds ?? [])]}
-        open={isOpenBirdModel}
-        isLoading={isLoading}
-        onCancel={() => {
-          setIsOpenBirdModel(false);
-        }}
-      />
-    </>
+    </Modal>
   );
 };
 
-export default FamilyList;
+export default BirdModel;

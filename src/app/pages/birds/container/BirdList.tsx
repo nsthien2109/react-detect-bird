@@ -44,21 +44,22 @@ const BirdList = () => {
           />
           <Search className="p-4 w-96" placeholder="input search birds here" loading={false} />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-          {birds.map((bird, index) => {
-            return <BirdItem bird={bird} key={index} />;
-          })}
-        </div>
+        <Spin spinning={isLoading}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+            {birds.map((bird, index) => {
+              return <BirdItem bird={bird} key={index} />;
+            })}
+          </div>
 
-        <div className="mt-5 text-center pagination-box">
-          <Pagination
-            onChange={(page, _) => handlePaginationChange(page)}
-            className="items-center w-full"
-            current={currentPage}
-            total={totalItem}
-          />
-        </div>
-        <Spin spinning={isLoading} fullscreen />
+          <div className="mt-5 text-center pagination-box">
+            <Pagination
+              onChange={(page, _) => handlePaginationChange(page)}
+              className="items-center w-full"
+              current={currentPage}
+              total={totalItem}
+            />
+          </div>
+        </Spin>
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
+import { Bird } from './bird';
+
 export interface BirdStatus {
   id: number;
   statusName: string;
   statusVietnameseName?: string;
+  birds?: Bird[];
 }
 
 export interface BirdStatusState {

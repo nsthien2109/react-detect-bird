@@ -6,7 +6,6 @@ export interface Bird {
   common_name: string;
   vietnamese_name: string;
   scientific_name: string;
-  bird_order: string;
   description: string;
   distribution: string;
   diet: string;
