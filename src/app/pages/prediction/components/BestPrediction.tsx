@@ -18,7 +18,7 @@ const BestPrediction = ({ bird }: BestPredictionProps) => {
             </li>
             <li className="mb-4 pre-info-item">
               <span className="font-semibold">Vietnamese Name : </span>
-              {bird.vietnamese_name}
+              {bird.vietnamese_name || 'Not update'}
             </li>
             <li className="mb-4 pre-info-item">
               <span className="font-semibold">Scientific Name : </span>
@@ -26,11 +26,11 @@ const BestPrediction = ({ bird }: BestPredictionProps) => {
             </li>
             <li className="mb-4 pre-info-item">
               <span className="font-semibold">Bird Order : </span>
-              {bird.bird_order}
+              {bird.order?.orderName} - {bird.order?.orderVietnameseName}
             </li>
             <li className="mb-4 pre-info-item">
               <span className="font-semibold">Family : </span>
-              {bird.family}
+              {bird.family?.familyName} - {bird.family?.familyVietnameseName}
             </li>
             <li className="mb-4 pre-info-item">
               <span className="font-semibold">Description : </span>
@@ -46,7 +46,7 @@ const BestPrediction = ({ bird }: BestPredictionProps) => {
             </li>
             <li className="mb-4 pre-info-item">
               <span className="font-semibold">Status : </span>
-              {bird.conservation_status}
+              {bird.status?.statusName} - {bird.status?.statusVietnameseName}
             </li>
           </ul>
         </div>

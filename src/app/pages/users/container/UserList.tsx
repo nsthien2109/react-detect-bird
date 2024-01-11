@@ -58,20 +58,7 @@ const UserList: React.FC = () => {
       dataIndex: 'email',
       key: 'email',
     },
-    {
-      title: 'Active',
-      dataIndex: 'isActive',
-      key: 'isActive',
-      render: (_, record) => {
-        console.log(record.isActive);
 
-        return (
-          <Tag color={record.isActive ? 'green' : 'orange-inverse'} key={record.key}>
-            {record.isActive ? 'Active' : 'Blocked'}
-          </Tag>
-        );
-      },
-    },
     {
       title: 'Role',
       key: 'role',
